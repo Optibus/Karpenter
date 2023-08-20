@@ -1,0 +1,1208 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Provisioned cluster capacity",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "gnetId": 16237,
+  "graphTooltip": 0,
+  "id": 28,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "000000001"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "semi-dark-orange",
+                "value": 20
+              },
+              {
+                "color": "semi-dark-yellow",
+                "value": 50
+              },
+              {
+                "color": "green",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 15,
+      "options": {
+        "displayMode": "gradient",
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "valueMode": "color"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg by (resource_type)(((karpenter_nodes_total_pod_requests{resource_type=\"cpu\", provisioner=~\"$provisioner\"} + karpenter_nodes_total_daemon_requests{resource_type=\"cpu\", provisioner=~\"$provisioner\"}) * 100) / karpenter_nodes_allocatable{resource_type=\"cpu\", provisioner=~\"$provisioner\"})",
+          "instant": true,
+          "legendFormat": "CPU",
+          "range": false,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg by (resource_type)(((karpenter_nodes_total_pod_requests{resource_type=\"memory\", provisioner=~\"$provisioner\"} + karpenter_nodes_total_daemon_requests{resource_type=\"memory\", provisioner=~\"$provisioner\"}) * 100) / karpenter_nodes_allocatable{resource_type=\"memory\", provisioner=~\"$provisioner\"})",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Memory",
+          "range": false,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg by (resource_type)((karpenter_nodes_total_pod_requests{resource_type=\"ephemeral_storage\", provisioner=~\"$provisioner\"} * 100) / karpenter_nodes_allocatable{resource_type=\"ephemeral_storage\", provisioner=~\"$provisioner\"})",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Storage",
+          "range": false,
+          "refId": "C"
+        }
+      ],
+      "title": "Cluster",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "000000001"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Hour"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "currencyUSD"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#fbfbfb",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Month"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "currencyUSD"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ffffff",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count(count(karpenter_pods_state{provisioner=~\"$provisioner\",provisioner!=\"N/A\",phase=\"Running\"}) by (node))",
+          "instant": true,
+          "legendFormat": "Nodes Count",
+          "range": false,
+          "refId": "Node Count"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(karpenter_pods_state{provisioner=~\"$provisioner|N/A\",phase=\"Running\"})",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Pods Count",
+          "range": false,
+          "refId": "Pods Count"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(karpenter_pods_state{provisioner=~\"$provisioner|N/A\",phase=\"Pending\"})",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Pending Pods",
+          "range": false,
+          "refId": "Pending Pods"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(((karpenter_nodes_total_pod_requests{provisioner=~\"$provisioner\", capacity_type=\"on-demand\", resource_type=\"cpu\"}*0) + on(instance_type, region) group_left(karpenter_nodes_total_pod_requests_node_name) karpenter_cloudprovider_instance_type_price_estimate{capacity_type=\"on-demand\"}\n) or ((karpenter_nodes_total_pod_requests{provisioner=~\"$provisioner\", capacity_type=\"spot\", resource_type=\"cpu\"}*0) + on(instance_type, region, zone) group_left(karpenter_nodes_total_pod_requests_node_name) karpenter_cloudprovider_instance_type_price_estimate{capacity_type=\"spot\"}\n))",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Hour",
+          "range": false,
+          "refId": "PricePerHour"
+        },
+        {
+          "datasource": {
+            "name": "Expression",
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "$PricePerHour * 730",
+          "hide": false,
+          "refId": "Month",
+          "type": "math"
+        }
+      ],
+      "title": "Cluster",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "000000001"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "node_name"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 300
+              },
+              {
+                "id": "custom.align",
+                "value": "left"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "CPU"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "percentage",
+                  "steps": [
+                    {
+                      "color": "dark-red",
+                      "value": null
+                    },
+                    {
+                      "color": "semi-dark-orange",
+                      "value": 20
+                    },
+                    {
+                      "color": "semi-dark-yellow",
+                      "value": 50
+                    },
+                    {
+                      "color": "green",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Memory"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-red",
+                      "value": null
+                    },
+                    {
+                      "color": "semi-dark-orange",
+                      "value": 20
+                    },
+                    {
+                      "color": "semi-dark-yellow",
+                      "value": 50
+                    },
+                    {
+                      "color": "green",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Storage"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              },
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-red",
+                      "value": null
+                    },
+                    {
+                      "color": "semi-dark-orange",
+                      "value": 20
+                    },
+                    {
+                      "color": "semi-dark-yellow",
+                      "value": 50
+                    },
+                    {
+                      "color": "green",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "min",
+                "value": 0
+              },
+              {
+                "id": "max",
+                "value": 100
+              },
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Price"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 85
+              },
+              {
+                "id": "unit",
+                "value": "currencyUSD"
+              },
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Capacity"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              },
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Type"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              },
+              {
+                "id": "custom.align",
+                "value": "center"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "custom.align",
+                "value": "center"
+              },
+              {
+                "id": "custom.width",
+                "value": 60
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "1": {
+                        "color": "semi-dark-green",
+                        "index": 0,
+                        "text": "Ready"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null",
+                      "result": {
+                        "color": "dark-orange",
+                        "index": 1,
+                        "text": "Not Ready"
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Schedulable"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 60
+              },
+              {
+                "id": "custom.align",
+                "value": "center"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "semi-dark-green",
+                        "index": 0,
+                        "text": "S"
+                      },
+                      "1": {
+                        "color": "semi-dark-orange",
+                        "index": 1,
+                        "text": "C"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "id": 16,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": [],
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Price"
+          }
+        ]
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "((karpenter_nodes_total_pod_requests{resource_type=\"cpu\", provisioner=~\"$provisioner\"} + karpenter_nodes_total_daemon_requests{resource_type=\"cpu\", provisioner=~\"$provisioner\"}) * 100) / karpenter_nodes_allocatable{resource_type=\"cpu\", provisioner=~\"$provisioner\"}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "CPU",
+          "range": false,
+          "refId": "CPU"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "((karpenter_nodes_total_pod_requests{resource_type=\"memory\", provisioner=~\"$provisioner\"} + karpenter_nodes_total_daemon_requests{resource_type=\"memory\", provisioner=~\"$provisioner\"}) * 100) / karpenter_nodes_allocatable{resource_type=\"memory\", provisioner=~\"$provisioner\"}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Memory",
+          "range": false,
+          "refId": "Memory"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(karpenter_nodes_total_pod_requests{resource_type=\"ephemeral_storage\", provisioner=~\"$provisioner\"} * 100) / karpenter_nodes_allocatable{resource_type=\"ephemeral_storage\", provisioner=~\"$provisioner\"}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Storage",
+          "range": false,
+          "refId": "Storage"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "((karpenter_nodes_total_pod_requests{provisioner=~\"$provisioner\", capacity_type=\"on-demand\", resource_type=\"cpu\"}*0) + on(instance_type, region) group_left(karpenter_nodes_total_pod_requests_node_name) karpenter_cloudprovider_instance_type_price_estimate{capacity_type=\"on-demand\"}\n) or ((karpenter_nodes_total_pod_requests{provisioner=~\"$provisioner\", capacity_type=\"spot\", resource_type=\"cpu\"}*0) + on(instance_type, region, zone) group_left(karpenter_nodes_total_pod_requests_node_name) karpenter_cloudprovider_instance_type_price_estimate{capacity_type=\"spot\"}\n)",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Price",
+          "range": false,
+          "refId": "Price"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "expr": "(karpenter_nodes_total_pod_requests{provisioner=~\"$provisioner\", resource_type=\"cpu\"}*0) + on(node_name) group_left(karpenter_nodes_total_pod_requests_node_name) label_replace(kube_node_status_condition{condition='Ready', status='true'}, \"node_name\", \"$1\", \"node\", \"(.+)\")",
+          "format": "table",
+          "hide": false,
+          "legendFormat": "Node Status",
+          "range": true,
+          "refId": "Node Status"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "(karpenter_nodes_total_pod_requests{provisioner=~\"$provisioner\", resource_type=\"cpu\"}*0) + on(node_name) group_left(karpenter_nodes_total_pod_requests_node_name) label_replace(kube_node_spec_unschedulable, \"node_name\", \"$1\", \"node\", \"(.+)\")",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "Schedulable",
+          "range": false,
+          "refId": "Schedulable"
+        }
+      ],
+      "title": "Current Node Metrics",
+      "transformations": [
+        {
+          "id": "joinByField",
+          "options": {
+            "byField": "node_name",
+            "mode": "outer"
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Time 1": true,
+              "Time 2": true,
+              "Time 3": true,
+              "Time 4": true,
+              "Time 5": true,
+              "Time 6": true,
+              "Value #Node Status": false,
+              "arch": true,
+              "arch 1": true,
+              "arch 2": true,
+              "arch 3": true,
+              "arch 4": true,
+              "arch 5": true,
+              "arch 6": true,
+              "capacity_type 1": false,
+              "capacity_type 2": true,
+              "capacity_type 3": true,
+              "capacity_type 4": true,
+              "capacity_type 5": true,
+              "capacity_type 6": true,
+              "instance": true,
+              "instance 1": true,
+              "instance 2": true,
+              "instance 3": true,
+              "instance 4": true,
+              "instance 5": true,
+              "instance 6": true,
+              "instance_accelerator_count": true,
+              "instance_accelerator_count 1": true,
+              "instance_accelerator_count 2": true,
+              "instance_accelerator_count 3": true,
+              "instance_accelerator_count 4": true,
+              "instance_accelerator_count 5": true,
+              "instance_accelerator_count 6": true,
+              "instance_accelerator_manufacturer": true,
+              "instance_accelerator_manufacturer 1": true,
+              "instance_accelerator_manufacturer 2": true,
+              "instance_accelerator_manufacturer 3": true,
+              "instance_accelerator_manufacturer 4": true,
+              "instance_accelerator_manufacturer 5": true,
+              "instance_accelerator_manufacturer 6": true,
+              "instance_accelerator_name": true,
+              "instance_accelerator_name 1": true,
+              "instance_accelerator_name 2": true,
+              "instance_accelerator_name 3": true,
+              "instance_accelerator_name 4": true,
+              "instance_accelerator_name 5": true,
+              "instance_accelerator_name 6": true,
+              "instance_category": true,
+              "instance_category 1": true,
+              "instance_category 2": true,
+              "instance_category 3": true,
+              "instance_category 4": true,
+              "instance_category 5": true,
+              "instance_category 6": true,
+              "instance_cpu": true,
+              "instance_cpu 1": true,
+              "instance_cpu 2": true,
+              "instance_cpu 3": true,
+              "instance_cpu 4": true,
+              "instance_cpu 5": true,
+              "instance_cpu 6": true,
+              "instance_encryption_in_transit_supported": true,
+              "instance_encryption_in_transit_supported 1": true,
+              "instance_encryption_in_transit_supported 2": true,
+              "instance_encryption_in_transit_supported 3": true,
+              "instance_encryption_in_transit_supported 4": true,
+              "instance_encryption_in_transit_supported 5": true,
+              "instance_encryption_in_transit_supported 6": true,
+              "instance_family": true,
+              "instance_family 1": true,
+              "instance_family 2": true,
+              "instance_family 3": true,
+              "instance_family 4": true,
+              "instance_family 5": true,
+              "instance_family 6": true,
+              "instance_generation": true,
+              "instance_generation 1": true,
+              "instance_generation 2": true,
+              "instance_generation 3": true,
+              "instance_generation 4": true,
+              "instance_generation 5": true,
+              "instance_generation 6": true,
+              "instance_gpu_count": true,
+              "instance_gpu_count 1": true,
+              "instance_gpu_count 2": true,
+              "instance_gpu_count 3": true,
+              "instance_gpu_count 4": true,
+              "instance_gpu_count 5": true,
+              "instance_gpu_count 6": true,
+              "instance_gpu_manufacturer": true,
+              "instance_gpu_manufacturer 1": true,
+              "instance_gpu_manufacturer 2": true,
+              "instance_gpu_manufacturer 3": true,
+              "instance_gpu_manufacturer 4": true,
+              "instance_gpu_manufacturer 5": true,
+              "instance_gpu_manufacturer 6": true,
+              "instance_gpu_memory": true,
+              "instance_gpu_memory 1": true,
+              "instance_gpu_memory 2": true,
+              "instance_gpu_memory 3": true,
+              "instance_gpu_memory 4": true,
+              "instance_gpu_memory 5": true,
+              "instance_gpu_memory 6": true,
+              "instance_gpu_name": true,
+              "instance_gpu_name 1": true,
+              "instance_gpu_name 2": true,
+              "instance_gpu_name 3": true,
+              "instance_gpu_name 4": true,
+              "instance_gpu_name 5": true,
+              "instance_gpu_name 6": true,
+              "instance_hypervisor": true,
+              "instance_hypervisor 1": true,
+              "instance_hypervisor 2": true,
+              "instance_hypervisor 3": true,
+              "instance_hypervisor 4": true,
+              "instance_hypervisor 5": true,
+              "instance_hypervisor 6": true,
+              "instance_local_nvme": true,
+              "instance_local_nvme 1": true,
+              "instance_local_nvme 2": true,
+              "instance_local_nvme 3": true,
+              "instance_local_nvme 4": true,
+              "instance_local_nvme 5": true,
+              "instance_local_nvme 6": true,
+              "instance_memory": true,
+              "instance_memory 1": true,
+              "instance_memory 2": true,
+              "instance_memory 3": true,
+              "instance_memory 4": true,
+              "instance_memory 5": true,
+              "instance_memory 6": true,
+              "instance_network_bandwidth": true,
+              "instance_network_bandwidth 1": true,
+              "instance_network_bandwidth 2": true,
+              "instance_network_bandwidth 3": true,
+              "instance_network_bandwidth 4": true,
+              "instance_network_bandwidth 5": true,
+              "instance_network_bandwidth 6": true,
+              "instance_pods": true,
+              "instance_pods 1": true,
+              "instance_pods 2": true,
+              "instance_pods 3": true,
+              "instance_pods 4": true,
+              "instance_pods 5": true,
+              "instance_pods 6": true,
+              "instance_size": true,
+              "instance_size 1": true,
+              "instance_size 2": true,
+              "instance_size 3": true,
+              "instance_size 4": true,
+              "instance_size 5": true,
+              "instance_size 6": true,
+              "instance_type 1": false,
+              "instance_type 2": true,
+              "instance_type 3": true,
+              "instance_type 4": true,
+              "instance_type 5": true,
+              "instance_type 6": true,
+              "job": true,
+              "job 1": true,
+              "job 2": true,
+              "job 3": true,
+              "job 4": true,
+              "job 5": true,
+              "job 6": true,
+              "os": true,
+              "os 1": true,
+              "os 2": true,
+              "os 3": true,
+              "os 4": true,
+              "os 5": true,
+              "os 6": true,
+              "provisioner": true,
+              "provisioner 1": true,
+              "provisioner 2": true,
+              "provisioner 3": true,
+              "provisioner 4": true,
+              "provisioner 5": true,
+              "provisioner 6": true,
+              "provisioner_name": true,
+              "provisioner_name 1": true,
+              "provisioner_name 2": true,
+              "provisioner_name 3": true,
+              "provisioner_name 4": true,
+              "provisioner_name 5": true,
+              "provisioner_name 6": true,
+              "region": true,
+              "region 1": true,
+              "region 2": true,
+              "region 3": true,
+              "region 4": true,
+              "region 5": true,
+              "region 6": true,
+              "resource_type": true,
+              "resource_type 1": true,
+              "resource_type 2": true,
+              "resource_type 3": true,
+              "resource_type 4": true,
+              "resource_type 5": true,
+              "resource_type 6": true,
+              "windows_build": true,
+              "windows_build 1": true,
+              "windows_build 2": true,
+              "windows_build 3": true,
+              "windows_build 4": true,
+              "windows_build 5": true,
+              "windows_build 6": true,
+              "zone": true,
+              "zone 1": false,
+              "zone 2": true,
+              "zone 3": true,
+              "zone 4": true,
+              "zone 5": true,
+              "zone 6": true
+            },
+            "indexByName": {
+              "Time 1": 5,
+              "Time 2": 36,
+              "Time 3": 67,
+              "Time 4": 98,
+              "Value #CPU": 1,
+              "Value #Memory": 2,
+              "Value #Price": 4,
+              "Value #Storage": 3,
+              "arch 1": 6,
+              "arch 2": 37,
+              "arch 3": 68,
+              "arch 4": 99,
+              "capacity_type 1": 7,
+              "capacity_type 2": 38,
+              "capacity_type 3": 69,
+              "capacity_type 4": 100,
+              "instance 1": 8,
+              "instance 2": 39,
+              "instance 3": 70,
+              "instance 4": 101,
+              "instance_accelerator_count 1": 9,
+              "instance_accelerator_count 2": 40,
+              "instance_accelerator_count 3": 71,
+              "instance_accelerator_count 4": 102,
+              "instance_accelerator_manufacturer 1": 10,
+              "instance_accelerator_manufacturer 2": 41,
+              "instance_accelerator_manufacturer 3": 72,
+              "instance_accelerator_manufacturer 4": 103,
+              "instance_accelerator_name 1": 11,
+              "instance_accelerator_name 2": 42,
+              "instance_accelerator_name 3": 73,
+              "instance_accelerator_name 4": 104,
+              "instance_category 1": 12,
+              "instance_category 2": 43,
+              "instance_category 3": 74,
+              "instance_category 4": 105,
+              "instance_cpu 1": 13,
+              "instance_cpu 2": 44,
+              "instance_cpu 3": 75,
+              "instance_cpu 4": 106,
+              "instance_encryption_in_transit_supported 1": 14,
+              "instance_encryption_in_transit_supported 2": 45,
+              "instance_encryption_in_transit_supported 3": 76,
+              "instance_encryption_in_transit_supported 4": 107,
+              "instance_family 1": 15,
+              "instance_family 2": 46,
+              "instance_family 3": 77,
+              "instance_family 4": 108,
+              "instance_generation 1": 16,
+              "instance_generation 2": 47,
+              "instance_generation 3": 78,
+              "instance_generation 4": 109,
+              "instance_gpu_count 1": 17,
+              "instance_gpu_count 2": 48,
+              "instance_gpu_count 3": 79,
+              "instance_gpu_count 4": 110,
+              "instance_gpu_manufacturer 1": 18,
+              "instance_gpu_manufacturer 2": 49,
+              "instance_gpu_manufacturer 3": 80,
+              "instance_gpu_manufacturer 4": 111,
+              "instance_gpu_memory 1": 19,
+              "instance_gpu_memory 2": 50,
+              "instance_gpu_memory 3": 81,
+              "instance_gpu_memory 4": 112,
+              "instance_gpu_name 1": 20,
+              "instance_gpu_name 2": 51,
+              "instance_gpu_name 3": 82,
+              "instance_gpu_name 4": 113,
+              "instance_hypervisor 1": 21,
+              "instance_hypervisor 2": 52,
+              "instance_hypervisor 3": 83,
+              "instance_hypervisor 4": 114,
+              "instance_local_nvme 1": 22,
+              "instance_local_nvme 2": 53,
+              "instance_local_nvme 3": 84,
+              "instance_local_nvme 4": 115,
+              "instance_memory 1": 23,
+              "instance_memory 2": 54,
+              "instance_memory 3": 85,
+              "instance_memory 4": 116,
+              "instance_network_bandwidth 1": 24,
+              "instance_network_bandwidth 2": 55,
+              "instance_network_bandwidth 3": 86,
+              "instance_network_bandwidth 4": 117,
+              "instance_pods 1": 25,
+              "instance_pods 2": 56,
+              "instance_pods 3": 87,
+              "instance_pods 4": 118,
+              "instance_size 1": 26,
+              "instance_size 2": 57,
+              "instance_size 3": 88,
+              "instance_size 4": 119,
+              "instance_type 1": 27,
+              "instance_type 2": 58,
+              "instance_type 3": 89,
+              "instance_type 4": 120,
+              "job 1": 28,
+              "job 2": 59,
+              "job 3": 90,
+              "job 4": 121,
+              "node_name": 0,
+              "os 1": 29,
+              "os 2": 60,
+              "os 3": 91,
+              "os 4": 122,
+              "provisioner 1": 30,
+              "provisioner 2": 61,
+              "provisioner 3": 92,
+              "provisioner 4": 123,
+              "provisioner_name 1": 31,
+              "provisioner_name 2": 62,
+              "provisioner_name 3": 93,
+              "provisioner_name 4": 124,
+              "region 1": 32,
+              "region 2": 63,
+              "region 3": 94,
+              "region 4": 125,
+              "resource_type 1": 33,
+              "resource_type 2": 64,
+              "resource_type 3": 95,
+              "resource_type 4": 126,
+              "windows_build 1": 34,
+              "windows_build 2": 65,
+              "windows_build 3": 96,
+              "windows_build 4": 127,
+              "zone 1": 35,
+              "zone 2": 66,
+              "zone 3": 97,
+              "zone 4": 128
+            },
+            "renameByName": {
+              "Value #CPU": "CPU",
+              "Value #Memory": "Memory",
+              "Value #Node Status": "Status",
+              "Value #Price": "Price",
+              "Value #Schedulable": "Schedulable",
+              "Value #Storage": "Storage",
+              "capacity_type 1": "Capacity",
+              "instance_pods 1": "",
+              "instance_type 1": "Type",
+              "node_name": "Node Name"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "definition": "label_values(provisioner)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "provisioner",
+        "options": [],
+        "query": {
+          "query": "label_values(provisioner)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "000000001"
+        },
+        "filters": [],
+        "hide": 0,
+        "name": "Filters",
+        "skipUrlSync": false,
+        "type": "adhoc"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-5s",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Karpenter Cluster Nodes",
+  "uid": "c631dad7-4852-4d40-babb-e8c62bd7afc9",
+  "version": 37,
+  "weekStart": ""
+}
