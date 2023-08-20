@@ -1,2 +1,2 @@
 # Karpenter
-Karpenter
+Karpenter Grafana Dashboard
