@@ -26,7 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 16237,
   "graphTooltip": 0,
-  "id": 28,
+  "id": 26,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -77,8 +77,10 @@
       "id": 15,
       "options": {
         "displayMode": "gradient",
+        "maxVizHeight": 300,
         "minVizHeight": 10,
         "minVizWidth": 0,
+        "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -88,9 +90,10 @@
           "values": false
         },
         "showUnfilled": true,
+        "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -220,10 +223,12 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -273,7 +278,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(((karpenter_nodes_total_pod_requests{nodepool=~\"$nodepool\", capacity_type=\"on-demand\", resource_type=\"cpu\"}*0) + on(instance_type, region) group_left(karpenter_nodes_total_pod_requests_node_name) karpenter_cloudprovider_instance_type_price_estimate{capacity_type=\"on-demand\"}\n) or ((karpenter_nodes_total_pod_requests{nodepool=~\"$nodepool\", capacity_type=\"spot\", resource_type=\"cpu\"}*0) + on(instance_type, region, zone) group_left(karpenter_nodes_total_pod_requests_node_name) karpenter_cloudprovider_instance_type_price_estimate{capacity_type=\"spot\"}\n))",
+          "expr": "sum(((karpenter_nodes_total_pod_requests{nodepool=~\"$nodepool\", capacity_type=\"on-demand\", resource_type=\"cpu\"}*0) + on(instance_type, zone) group_left(karpenter_nodes_total_pod_requests_node_name) karpenter_cloudprovider_instance_type_offering_price_estimate{capacity_type=\"on-demand\"}\n) or ((karpenter_nodes_total_pod_requests{nodepool=~\"$nodepool\", capacity_type=\"spot\", resource_type=\"cpu\"}*0) + on(instance_type, zone) group_left(karpenter_nodes_total_pod_requests_node_name) karpenter_cloudprovider_instance_type_offering_price_estimate{capacity_type=\"spot\"}\n))",
           "hide": false,
           "instant": true,
           "legendFormat": "Hour",
@@ -675,7 +680,7 @@
           }
         ]
       },
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "10.4.1",
       "targets": [
         {
           "datasource": {
@@ -729,7 +734,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "((karpenter_nodes_total_pod_requests{nodepool=~\"$nodepool\", capacity_type=\"on-demand\", resource_type=\"cpu\"}*0) + on(instance_type, region) group_left(karpenter_nodes_total_pod_requests_node_name) karpenter_cloudprovider_instance_type_price_estimate{capacity_type=\"on-demand\"}\n) or ((karpenter_nodes_total_pod_requests{nodepool=~\"$nodepool\", capacity_type=\"spot\", resource_type=\"cpu\"}*0) + on(instance_type, region, zone) group_left(karpenter_nodes_total_pod_requests_node_name) karpenter_cloudprovider_instance_type_price_estimate{capacity_type=\"spot\"}\n)",
+          "expr": "((karpenter_nodes_total_pod_requests{nodepool=~\"$nodepool\", capacity_type=\"on-demand\", resource_type=\"cpu\"}*0) + on(instance_type, zone) group_left(karpenter_nodes_total_pod_requests_node_name) karpenter_cloudprovider_instance_type_offering_price_estimate{capacity_type=\"on-demand\"}\n) or ((karpenter_nodes_total_pod_requests{nodepool=~\"$nodepool\", capacity_type=\"spot\", resource_type=\"cpu\"}*0) + on(instance_type, zone) group_left(karpenter_nodes_total_pod_requests_node_name) karpenter_cloudprovider_instance_type_offering_price_estimate{capacity_type=\"spot\"}\n)",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -843,6 +848,12 @@
               "instance_cpu 4": true,
               "instance_cpu 5": true,
               "instance_cpu 6": true,
+              "instance_cpu_manufacturer 1": true,
+              "instance_cpu_manufacturer 2": true,
+              "instance_cpu_manufacturer 3": true,
+              "instance_cpu_manufacturer 4": true,
+              "instance_cpu_manufacturer 5": true,
+              "instance_cpu_manufacturer 6": true,
               "instance_encryption_in_transit_supported": true,
               "instance_encryption_in_transit_supported 1": true,
               "instance_encryption_in_transit_supported 2": true,
@@ -947,13 +958,6 @@
               "job 4": true,
               "job 5": true,
               "job 6": true,
-              "os": true,
-              "os 1": true,
-              "os 2": true,
-              "os 3": true,
-              "os 4": true,
-              "os 5": true,
-              "os 6": true,
               "nodepool": true,
               "nodepool 1": true,
               "nodepool 2": true,
@@ -961,6 +965,13 @@
               "nodepool 4": true,
               "nodepool 5": true,
               "nodepool 6": true,
+              "os": true,
+              "os 1": true,
+              "os 2": true,
+              "os 3": true,
+              "os 4": true,
+              "os 5": true,
+              "os 6": true,
               "provisioner_name": true,
               "provisioner_name 1": true,
               "provisioner_name 2": true,
@@ -997,6 +1008,7 @@
               "zone 5": true,
               "zone 6": true
             },
+            "includeByName": {},
             "indexByName": {
               "Time 1": 5,
               "Time 2": 36,
@@ -1099,14 +1111,14 @@
               "job 3": 90,
               "job 4": 121,
               "node_name": 0,
-              "os 1": 29,
-              "os 2": 60,
-              "os 3": 91,
-              "os 4": 122,
               "nodepool 1": 30,
               "nodepool 2": 61,
               "nodepool 3": 92,
               "nodepool 4": 123,
+              "os 1": 29,
+              "os 2": 60,
+              "os 3": 91,
+              "os 4": 122,
               "provisioner_name 1": 31,
               "provisioner_name 2": 62,
               "provisioner_name 3": 93,
@@ -1147,14 +1159,13 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 38,
-  "style": "dark",
+  "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": [
             "All"
           ],
@@ -1202,6 +1213,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "Karpenter Cluster Nodes",
-  "version": 37,
+  "uid": "b29271db-ac82-4b9c-ba63-31ea938f9163",
+  "version": 4,
   "weekStart": ""
 }
