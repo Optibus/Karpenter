@@ -26,10 +26,80 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 16237,
   "graphTooltip": 0,
-  "id": 26,
+  "id": 30,
   "links": [],
   "liveNow": false,
   "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "000000001"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 0
+      },
+      "id": 17,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^version$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "value",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.4.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "000000001"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "karpenter_build_info",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Karpenter Version",
+          "range": false,
+          "refId": "Karpenter Version"
+        }
+      ],
+      "title": "Karpenter Version",
+      "type": "stat"
+    },
     {
       "datasource": {
         "type": "prometheus",
@@ -70,8 +140,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 12,
-        "x": 0,
+        "w": 11,
+        "x": 3,
         "y": 0
       },
       "id": 15,
@@ -206,8 +276,8 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 12,
-        "x": 12,
+        "w": 10,
+        "x": 14,
         "y": 0
       },
       "id": 14,
@@ -1214,6 +1284,6 @@
   "timezone": "",
   "title": "Karpenter Cluster Nodes",
   "uid": "b29271db-ac82-4b9c-ba63-31ea938f9163",
-  "version": 4,
+  "version": 2,
   "weekStart": ""
 }
