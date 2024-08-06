@@ -26,7 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 16237,
   "graphTooltip": 0,
-  "id": 30,
+  "id": 33,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -67,6 +67,7 @@
         "graphMode": "none",
         "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -79,7 +80,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -163,7 +164,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -286,6 +287,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "vertical",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -298,7 +300,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -750,7 +752,7 @@
           }
         ]
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -819,7 +821,7 @@
             "uid": "000000001"
           },
           "editorMode": "code",
-          "expr": "(karpenter_nodes_total_pod_requests{nodepool=~\"$nodepool\", resource_type=\"cpu\"}*0) + on(node_name) group_left(karpenter_nodes_total_pod_requests_node_name) label_replace(kube_node_status_condition{condition='Ready', status='true'}, \"node_name\", \"$1\", \"node\", \"(.+)\")",
+          "expr": "(karpenter_nodes_total_pod_requests{nodepool=~\"$nodepool\", resource_type=\"cpu\"}*0) + on(node_name) group_left(karpenter_nodes_total_pod_requests_node_name) label_replace(kube_node_status_condition{condition='Ready', status='true',app_kubernetes_io_instance=\"system\"}, \"node_name\", \"$1\", \"node\", \"(.+)\")",
           "format": "table",
           "hide": false,
           "legendFormat": "Node Status",
@@ -833,7 +835,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(karpenter_nodes_total_pod_requests{nodepool=~\"$nodepool\", resource_type=\"cpu\"}*0) + on(node_name) group_left(karpenter_nodes_total_pod_requests_node_name) label_replace(kube_node_spec_unschedulable, \"node_name\", \"$1\", \"node\", \"(.+)\")",
+          "expr": "(karpenter_nodes_total_pod_requests{nodepool=~\"$nodepool\", resource_type=\"cpu\"}*0) + on(node_name) group_left(karpenter_nodes_total_pod_requests_node_name) label_replace(kube_node_spec_unschedulable{app_kubernetes_io_instance=\"system\"}, \"node_name\", \"$1\", \"node\", \"(.+)\")",
           "format": "table",
           "hide": false,
           "instant": true,
