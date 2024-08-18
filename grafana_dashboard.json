@@ -80,7 +80,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.1.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
@@ -164,7 +164,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.1.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
@@ -173,7 +173,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg by (resource_type)(((karpenter_nodes_total_pod_requests{resource_type=\"cpu\", nodepool=~\"$nodepool\"} + karpenter_nodes_total_daemon_requests{resource_type=\"cpu\", nodepool=~\"$nodepool\"}) * 100) / karpenter_nodes_allocatable{resource_type=\"cpu\", nodepool=~\"$nodepool\"})",
+          "expr": "avg by (resource_type)(((karpenter_nodes_total_pod_requests{resource_type=\"cpu\", nodepool=~\"$nodepool\"}) * 100) / karpenter_nodes_allocatable{resource_type=\"cpu\", nodepool=~\"$nodepool\"})",
           "instant": true,
           "legendFormat": "CPU",
           "range": false,
@@ -186,7 +186,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg by (resource_type)(((karpenter_nodes_total_pod_requests{resource_type=\"memory\", nodepool=~\"$nodepool\"} + karpenter_nodes_total_daemon_requests{resource_type=\"memory\", nodepool=~\"$nodepool\"}) * 100) / karpenter_nodes_allocatable{resource_type=\"memory\", nodepool=~\"$nodepool\"})",
+          "expr": "avg by (resource_type)(((karpenter_nodes_total_pod_requests{resource_type=\"memory\", nodepool=~\"$nodepool\"}) * 100) / karpenter_nodes_allocatable{resource_type=\"memory\", nodepool=~\"$nodepool\"})",
           "hide": false,
           "instant": true,
           "legendFormat": "Memory",
@@ -300,7 +300,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.1.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
@@ -752,7 +752,7 @@
           }
         ]
       },
-      "pluginVersion": "11.1.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
@@ -761,7 +761,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "((karpenter_nodes_total_pod_requests{resource_type=\"cpu\", nodepool=~\"$nodepool\"} + karpenter_nodes_total_daemon_requests{resource_type=\"cpu\", nodepool=~\"$nodepool\"}) * 100) / karpenter_nodes_allocatable{resource_type=\"cpu\", nodepool=~\"$nodepool\"}",
+          "expr": "((karpenter_nodes_total_pod_requests{resource_type=\"cpu\", nodepool=~\"$nodepool\"}) * 100) / karpenter_nodes_allocatable{resource_type=\"cpu\", nodepool=~\"$nodepool\"}",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -776,7 +776,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "((karpenter_nodes_total_pod_requests{resource_type=\"memory\", nodepool=~\"$nodepool\"} + karpenter_nodes_total_daemon_requests{resource_type=\"memory\", nodepool=~\"$nodepool\"}) * 100) / karpenter_nodes_allocatable{resource_type=\"memory\", nodepool=~\"$nodepool\"}",
+          "expr": "((karpenter_nodes_total_pod_requests{resource_type=\"memory\", nodepool=~\"$nodepool\"}) * 100) / karpenter_nodes_allocatable{resource_type=\"memory\", nodepool=~\"$nodepool\"}",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1299,6 +1299,6 @@
   "timezone": "",
   "title": "Karpenter Cluster Nodes",
   "uid": "b29271db-ac82-4b9c-ba63-31ea938f9163",
-  "version": 2,
+  "version": 3,
   "weekStart": ""
 }
