@@ -879,6 +879,12 @@
               "capacity_type 4": true,
               "capacity_type 5": true,
               "capacity_type 6": true,
+              "cluster 1": true,
+              "cluster 2": true,
+              "cluster 3": true,
+              "cluster 4": true,
+              "cluster 5": true,
+              "cluster 6": true,
               "instance": true,
               "instance 1": true,
               "instance 2": true,
@@ -1299,6 +1305,6 @@
   "timezone": "",
   "title": "Karpenter Cluster Nodes",
   "uid": "b29271db-ac82-4b9c-ba63-31ea938f9163",
-  "version": 3,
+  "version": 4,
   "weekStart": ""
 }
