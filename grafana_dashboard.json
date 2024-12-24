@@ -24,11 +24,9 @@
   "description": "Provisioned cluster capacity",
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": 16237,
   "graphTooltip": 0,
-  "id": 32,
+  "id": 36,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -80,7 +78,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.1.4",
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -148,6 +146,12 @@
       "id": 15,
       "options": {
         "displayMode": "gradient",
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
         "maxVizHeight": 300,
         "minVizHeight": 10,
         "minVizWidth": 0,
@@ -164,7 +168,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "11.1.4",
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -300,7 +304,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.1.4",
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -752,7 +756,7 @@
           }
         ]
       },
-      "pluginVersion": "11.1.4",
+      "pluginVersion": "11.3.1",
       "targets": [
         {
           "datasource": {
@@ -933,6 +937,12 @@
               "instance_cpu_manufacturer 4": true,
               "instance_cpu_manufacturer 5": true,
               "instance_cpu_manufacturer 6": true,
+              "instance_cpu_sustained_clock_speed_mhz 1": true,
+              "instance_cpu_sustained_clock_speed_mhz 2": true,
+              "instance_cpu_sustained_clock_speed_mhz 3": true,
+              "instance_cpu_sustained_clock_speed_mhz 4": true,
+              "instance_cpu_sustained_clock_speed_mhz 5": true,
+              "instance_cpu_sustained_clock_speed_mhz 6": true,
               "instance_ebs_bandwidth 1": true,
               "instance_ebs_bandwidth 2": true,
               "instance_ebs_bandwidth 3": true,
@@ -1249,14 +1259,14 @@
       "type": "table"
     }
   ],
+  "preload": false,
   "refresh": "5s",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": [
       {
         "current": {
-          "selected": true,
           "text": [
             "All"
           ],
@@ -1269,7 +1279,6 @@
           "uid": "000000001"
         },
         "definition": "label_values(nodepool)",
-        "hide": 0,
         "includeAll": true,
         "multi": true,
         "name": "nodepool",
@@ -1280,19 +1289,16 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
+        "baseFilters": [],
         "datasource": {
           "type": "prometheus",
           "uid": "000000001"
         },
         "filters": [],
-        "hide": 0,
         "name": "Filters",
-        "skipUrlSync": false,
         "type": "adhoc"
       }
     ]
@@ -1305,6 +1311,6 @@
   "timezone": "",
   "title": "Karpenter Cluster Nodes",
   "uid": "b29271db-ac82-4b9c-ba63-31ea938f9163",
-  "version": 4,
+  "version": 2,
   "weekStart": ""
 }
