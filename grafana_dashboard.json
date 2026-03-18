@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 36,
+  "id": 0,
   "links": [],
   "panels": [
     {
@@ -45,7 +45,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "text"
+                "color": "text",
+                "value": 0
               }
             ]
           }
@@ -77,7 +78,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -115,7 +116,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-red"
+                "color": "dark-red",
+                "value": 0
               },
               {
                 "color": "semi-dark-orange",
@@ -166,7 +168,7 @@
         "sizing": "auto",
         "valueMode": "color"
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -229,7 +231,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               }
             ]
           },
@@ -301,7 +304,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -388,6 +391,9 @@
             "cellOptions": {
               "type": "auto"
             },
+            "footer": {
+              "reducers": []
+            },
             "inspect": false
           },
           "mappings": [],
@@ -395,7 +401,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": 0
               },
               {
                 "color": "red",
@@ -443,7 +450,8 @@
                   "mode": "percentage",
                   "steps": [
                     {
-                      "color": "dark-red"
+                      "color": "dark-red",
+                      "value": 0
                     },
                     {
                       "color": "semi-dark-orange",
@@ -496,7 +504,8 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "dark-red"
+                      "color": "dark-red",
+                      "value": 0
                     },
                     {
                       "color": "semi-dark-orange",
@@ -549,7 +558,8 @@
                   "mode": "absolute",
                   "steps": [
                     {
-                      "color": "dark-red"
+                      "color": "dark-red",
+                      "value": 0
                     },
                     {
                       "color": "semi-dark-orange",
@@ -733,14 +743,6 @@
       "id": 16,
       "options": {
         "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": [],
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
         "showHeader": true,
         "sortBy": [
           {
@@ -749,7 +751,7 @@
           }
         ]
       },
-      "pluginVersion": "12.0.0",
+      "pluginVersion": "12.3.1",
       "targets": [
         {
           "datasource": {
@@ -915,6 +917,7 @@
               "instance_capability_flex 3": true,
               "instance_capability_flex 4": true,
               "instance_capability_flex 5": true,
+              "instance_capability_flex 6": true,
               "instance_category": true,
               "instance_category 1": true,
               "instance_category 2": true,
@@ -1038,6 +1041,12 @@
               "instance_size 4": true,
               "instance_size 5": true,
               "instance_size 6": true,
+              "instance_tenancy 1": true,
+              "instance_tenancy 2": true,
+              "instance_tenancy 3": true,
+              "instance_tenancy 4": true,
+              "instance_tenancy 5": true,
+              "instance_tenancy 6": true,
               "instance_type 1": false,
               "instance_type 2": true,
               "instance_type 3": true,
@@ -1259,7 +1268,7 @@
   ],
   "preload": false,
   "refresh": "5s",
-  "schemaVersion": 41,
+  "schemaVersion": 42,
   "tags": [],
   "templating": {
     "list": [
@@ -1307,5 +1316,5 @@
   "timezone": "",
   "title": "Karpenter Cluster Nodes",
   "uid": "b29271db-ac82-4b9c-ba63-31ea938f9163",
-  "version": 3
+  "version": 2
 }
